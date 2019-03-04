@@ -9,9 +9,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.WeakHashMap;
 
 public class DataBaseInitializator {
 
@@ -34,8 +31,10 @@ public class DataBaseInitializator {
         SetScheme scheme2 = new SetScheme(10,70.00);
         SetScheme scheme3 = new SetScheme(8,80.00);
 
-        Training training1 = new Training(deadLift,scheme1,new Date(2019,3,3));
-        Training training2 = new Training(deadLift,scheme2, new Date(2019,3,3));
+        java.util.Date dateObj = new java.util.Date();
+        long dateMilisec = dateObj.getTime();
+        Training training1 = new Training(deadLift,scheme1, new Date(dateMilisec));
+        Training training2 = new Training(deadLift,scheme2, new Date(dateMilisec));
 
 
 
@@ -70,6 +69,8 @@ public class DataBaseInitializator {
         transaction.commit();
         menager.close();
     }
+
+
 
     public static void main(String[] args) {
 
