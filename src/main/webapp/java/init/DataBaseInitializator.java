@@ -12,7 +12,7 @@ import java.sql.Date;
 
 public class DataBaseInitializator {
 
-    private void testInitDB(EntityManager menager) {
+    private void testInitSimpleDB(EntityManager menager) {
 
         Gender male = new Gender("male");
         Gender female = new Gender("female");
@@ -78,8 +78,11 @@ public class DataBaseInitializator {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("TestGymChampion");
         EntityManager menager = factory.createEntityManager();
 
-        DataBaseInitializator initializator = new DataBaseInitializator();
-        initializator.testInitDB(menager);
+//        DataBaseInitializator initializator = new DataBaseInitializator();
+//        initializator.testInitSimpleDB(menager);
+
+        BigDataBaseTestInitializator bigData = new BigDataBaseTestInitializator();
+        bigData.fillDataBase(menager);
 
         factory.close();
 
