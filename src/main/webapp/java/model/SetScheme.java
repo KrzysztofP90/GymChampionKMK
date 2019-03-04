@@ -1,18 +1,18 @@
 package model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class SetScheme {
 
     @Id
     @GeneratedValue
-    @Column(nullable = false)
     private int id;
+
+    @OneToMany(mappedBy = "set")
+    private List<Training> trainingList;
 
     @Column(nullable = false)
     private int reps;
@@ -26,6 +26,22 @@ public class SetScheme {
     public SetScheme(int reps, double load) {
         this.reps = reps;
         this.load = load;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Training> getTrainingList() {
+        return trainingList;
+    }
+
+    public void setTrainingList(List<Training> trainingList) {
+        this.trainingList = trainingList;
     }
 
     public int getReps() {

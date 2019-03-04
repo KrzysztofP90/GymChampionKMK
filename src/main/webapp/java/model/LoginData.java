@@ -1,10 +1,7 @@
 package model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class LoginData {
@@ -13,7 +10,7 @@ public class LoginData {
     @GeneratedValue
     private int id;
 
-    @Column(nullable = false, unique = false)
+    @OneToOne(targetEntity = User.class)
     private User login;
 
     @Column(nullable = false)
@@ -25,6 +22,14 @@ public class LoginData {
     public LoginData(User login, String password) {
         this.login = login;
         this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public User getLogin() {

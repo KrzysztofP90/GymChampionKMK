@@ -1,16 +1,25 @@
 package model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "User", indexes = {
-        @Index(columnList = "nickname")
-})
+@Table(name = "GymUser")
+
 public class User {
 
     @Id
-    @Column(nullable = false)
+    @GeneratedValue
+    private int id;
+
+
     private String login;
+
+    @OneToMany @ManyToOne(targetEntity = AgeCategory.class)
+    private AgeCategory ageCategory;
+
+    @OneToMany @ManyToOne(targetEntity = WeightCategory.class)
+    private WeightCategory weightCategory;
 
 
     private String nickname;
@@ -18,17 +27,12 @@ public class User {
     @Column(nullable = false)
     private int age;
 
-    @Column(nullable = false)
+    @ManyToOne
     private Gender sex;
 
     @Column(nullable = false)
     private int weight;
 
-    @Column(nullable = false)
-    private AgeCategory ageCategory;
-
-    @Column(nullable = false)
-    private WeightCategory weightCategory;
 
 
     public User() {
@@ -44,12 +48,36 @@ public class User {
         this.weightCategory = weightCategory;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getLogin() {
         return login;
     }
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public AgeCategory getAgeCategory() {
+        return ageCategory;
+    }
+
+    public void setAgeCategory(AgeCategory ageCategory) {
+        this.ageCategory = ageCategory;
+    }
+
+    public WeightCategory getWeightCategory() {
+        return weightCategory;
+    }
+
+    public void setWeightCategory(WeightCategory weightCategory) {
+        this.weightCategory = weightCategory;
     }
 
     public String getNickname() {
@@ -82,21 +110,5 @@ public class User {
 
     public void setWeight(int weight) {
         this.weight = weight;
-    }
-
-    public AgeCategory getAgeCategory() {
-        return ageCategory;
-    }
-
-    public void setAgeCategory(AgeCategory ageCategory) {
-        this.ageCategory = ageCategory;
-    }
-
-    public WeightCategory getWeightCategory() {
-        return weightCategory;
-    }
-
-    public void setWeightCategory(WeightCategory weightCategory) {
-        this.weightCategory = weightCategory;
     }
 }

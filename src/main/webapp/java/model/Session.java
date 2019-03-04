@@ -1,12 +1,16 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 public class Session {
 
-    @Column(nullable = false)
+    @Id
+    @GeneratedValue
+    private int id;
+
+
+    @OneToOne
     private User userLogin;
 
     @Column(nullable = false)
@@ -18,6 +22,14 @@ public class Session {
     public Session(User userLogin, String sessionId) {
         this.userLogin = userLogin;
         this.sessionId = sessionId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public User getUserLogin() {

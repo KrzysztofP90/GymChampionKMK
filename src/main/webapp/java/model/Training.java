@@ -1,24 +1,23 @@
 package model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
+
 
 @Entity
-@Table(name = "Training", indexes = {
-        @Index(columnList = "trainingDate")
-})
 public class Training {
 
 
     @Id
     @GeneratedValue
-    @Column(nullable = false)
     private int id;
 
-    @Column(nullable = false)
+
+    @ManyToOne
     private Exercise exercise;
 
-    @Column(nullable = false)
+
+    @ManyToOne
     private SetScheme set;
 
     @Column(nullable = false)
@@ -31,6 +30,14 @@ public class Training {
         this.exercise = exercise;
         this.set = set;
         this.trainingDate = trainingDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Exercise getExercise() {

@@ -1,9 +1,7 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class AgeCategory {
@@ -12,6 +10,9 @@ public class AgeCategory {
     @Id
     @GeneratedValue
     private int id;
+
+    @OneToMany(mappedBy = "ageCategory")
+    private List<User> userList;
 
     @Column(nullable = false)
     private int minAge;
@@ -38,6 +39,14 @@ public class AgeCategory {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 
     public int getMinAge() {

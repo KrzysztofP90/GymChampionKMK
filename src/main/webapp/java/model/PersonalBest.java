@@ -1,13 +1,18 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class PersonalBest {
 
-    @Column(nullable = false)
+    @Id
+    @GeneratedValue
+    private int id;
+
+
+    @ManyToOne
     private Exercise exercise;
 
     @Column(nullable = false)
@@ -16,13 +21,16 @@ public class PersonalBest {
     @Column(nullable = false)
     private int rMax10;
 
-    @Column(nullable = false)
+
+    @ManyToOne
     private User user;
 
-    @Column(nullable = false)
+
+    @ManyToOne
     private AgeCategory ageCategory;
 
-    @Column(nullable = false)
+
+    @ManyToOne
     private WeightCategory weightCategory;
 
     @Column(nullable = false)

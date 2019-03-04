@@ -1,15 +1,20 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class UserTraining {
 
-    @Column(nullable = false)
+    @Id
+    @GeneratedValue
+    private int id;
+
+
+    @OneToMany@ManyToOne(targetEntity = User.class)
     private User userLogin;
 
-    @Column(nullable = false)
+    @OneToMany@ManyToOne(targetEntity = Training.class)
     private Training trainingId;
 
 
@@ -19,6 +24,14 @@ public class UserTraining {
     public UserTraining(User userLogin, Training trainingId) {
         this.userLogin = userLogin;
         this.trainingId = trainingId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public User getUserLogin() {

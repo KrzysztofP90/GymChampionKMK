@@ -1,9 +1,7 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -12,6 +10,9 @@ public class WeightCategory {
     @Id
     @GeneratedValue
     private int id;
+
+    @OneToMany(mappedBy = "weightCategory")
+    List<User> userList;
 
     @Column(nullable = false)
     private int minWeight;
@@ -29,6 +30,22 @@ public class WeightCategory {
         this.minWeight = minWeight;
         this.maxWeight = maxWeight;
         this.categoryName = categoryName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 
     public int getMinWeight() {
