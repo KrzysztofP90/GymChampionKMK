@@ -1,2 +1,6 @@
+resources/META-INF/persistence.xml
+src/main/resources/META-INF/*
+*.iml
 .idea/*
-src/main/webapp/resources/META-INF/persistence.xml
+target/*
+out/*
