@@ -1,5 +1,5 @@
-resources/META-INF/persistence.xml
-src/main/resources/META-INF/*
+src/main/webapp/*
+src/main/resources/*
 *.iml
 .idea/*
 target/*
