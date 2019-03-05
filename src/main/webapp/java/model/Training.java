@@ -1,7 +1,7 @@
 package model;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 
 @Entity
@@ -20,7 +20,7 @@ public class Training {
     @ManyToOne
     private SetScheme set;
 
-    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date trainingDate;
 
     public Training() {

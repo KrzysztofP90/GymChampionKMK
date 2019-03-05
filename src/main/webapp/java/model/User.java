@@ -38,14 +38,12 @@ public class User {
     public User() {
     }
 
-    public User(String login, String nickname, int age, Gender sex, int weight, AgeCategory ageCategory, WeightCategory weightCategory) {
+    public User(String login, String nickname, int age, Gender sex, int weight) {
         this.login = login;
         this.nickname = nickname;
         this.age = age;
         this.sex = sex;
         this.weight = weight;
-        this.ageCategory = ageCategory;
-        this.weightCategory = weightCategory;
     }
 
     public int getId() {
