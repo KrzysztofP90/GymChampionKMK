@@ -189,6 +189,8 @@ public class BigDataBaseTestInitializator {
     }
 
     private void generate100TrainigsAndUsersTrainings(User user) {
+//        int count = random.nextInt(490) + 10; i<count
+
         for (int i = 0; i < 100; i++) {
             Training training = new Training(getRandomExercise(), getRandomScheme(),generateRandomDate() );
             listOf100kUsersTrainings.add(new UserTraining(user, training));

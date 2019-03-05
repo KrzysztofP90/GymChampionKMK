@@ -45,6 +45,7 @@ public class DataBaseInitializator {
         EntityTransaction transaction = menager.getTransaction();
         transaction.begin();
 
+        System.out.println("start");
         menager.persist(male);
         menager.persist(female);
 
