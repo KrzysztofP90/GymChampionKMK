@@ -22,4 +22,11 @@ CREATE TABLE login_data(
                          login_id serial PRIMARY KEY,
                          user_login varchar(20) unique REFERENCES gym_user(user_login),
                          password varchar(20)
-)
+);
+
+CREATE TABLE age_category(
+  age_category_id serial PRIMARY KEY,
+  min_age smallint NOT NULL,
+  max_age smallint NOT NULL,
+  category_name varchar(20) not null
+);
