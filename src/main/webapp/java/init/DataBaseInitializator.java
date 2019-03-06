@@ -21,7 +21,7 @@ public class DataBaseInitializator {
 
         WeightCategory weightCategory1 = new WeightCategory(60, 70, "light");
 
-        User firstUser = new User("Pawel", "Pawcio" ,23, male, 68, ageCategory1, weightCategory1);
+        User firstUser = new User("Pawel", "Pawcio" ,23, male, 68);
 
         LoginData firstUserLogin = new LoginData(firstUser, "abc");
 
@@ -82,7 +82,7 @@ public class DataBaseInitializator {
 //        initializator.testInitSimpleDB(menager);
 
         BigDataBaseTestInitializator bigData = new BigDataBaseTestInitializator();
-        bigData.fillDataBase(menager);
+        bigData.fillDataBase(menager, 3);
 
         factory.close();
 

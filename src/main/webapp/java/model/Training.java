@@ -21,12 +21,12 @@ public class Training {
     private SetScheme set;
 
     @Column(nullable = false)
-    private Date trainingDate;
+    private java.util.Date trainingDate;
 
     public Training() {
     }
 
-    public Training(Exercise exercise, SetScheme set, Date trainingDate) {
+    public Training(Exercise exercise, SetScheme set, java.util.Date trainingDate) {
         this.exercise = exercise;
         this.set = set;
         this.trainingDate = trainingDate;
@@ -56,7 +56,7 @@ public class Training {
         this.set = set;
     }
 
-    public Date getTrainingDate() {
+    public java.util.Date getTrainingDate() {
         return trainingDate;
     }
 

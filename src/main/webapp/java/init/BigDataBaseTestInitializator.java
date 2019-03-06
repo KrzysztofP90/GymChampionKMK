@@ -5,9 +5,7 @@ import model.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class BigDataBaseTestInitializator {
 
@@ -21,8 +19,8 @@ public class BigDataBaseTestInitializator {
     private List<LoginData> loginDataList;
     private List<SetScheme> schemes;
 
-    private List<Training> trainingList100kRecords;
-    private List<UserTraining> listOf100kUsersTrainings;
+    private List<Training> trainingListRecords;
+    private List<UserTraining> listOfUsersTrainings;
 
 
     public BigDataBaseTestInitializator() {
@@ -31,18 +29,19 @@ public class BigDataBaseTestInitializator {
         this.random = new Random();
         this.loginDataList = new ArrayList<>();
         this.schemes = new ArrayList<>();
-        this.trainingList100kRecords = new ArrayList<>();
-        this.listOf100kUsersTrainings = new ArrayList<>();
+        this.trainingListRecords = new ArrayList<>();
+        this.listOfUsersTrainings = new ArrayList<>();
+        this.userList = new ArrayList<>();
     }
 
     private void generateWeightCategory() {
 
         weightCategoryList = new ArrayList<>();
-        weightCategoryList.add(new WeightCategory(70, 80, "lightmedium"));
-        weightCategoryList.add(new WeightCategory(80, 90, "medium"));
-        weightCategoryList.add(new WeightCategory(90, 100, "heavy"));
-        weightCategoryList.add(new WeightCategory(100, 110, "superheavy"));
-        weightCategoryList.add(new WeightCategory(110, 150, "megaheavy"));
+        weightCategoryList.add(new WeightCategory(50, 60, "light"));
+        weightCategoryList.add(new WeightCategory(61, 70, "medium"));
+        weightCategoryList.add(new WeightCategory(71, 85, "heavy"));
+        weightCategoryList.add(new WeightCategory(86, 100, "superheavy"));
+        weightCategoryList.add(new WeightCategory(101, 200, "megaheavy"));
 
 
     }
@@ -50,69 +49,69 @@ public class BigDataBaseTestInitializator {
     private void generateAgeCategory() {
 
         ageCategoryList = new ArrayList<>();
-        ageCategoryList.add(new AgeCategory(18, 25, "Young"));
-        ageCategoryList.add(new AgeCategory(25, 30, "AlsoYoung"));
-        ageCategoryList.add(new AgeCategory(30, 35, "Adult")) ;
-        ageCategoryList.add(new AgeCategory(36, 45, "Mature"));
-        ageCategoryList.add(new AgeCategory(45, 50, "ExtraMature"));
-        ageCategoryList.add(new AgeCategory(50, 55, "Older"));
-        ageCategoryList.add(new AgeCategory(55, 150, "Old"));
+        ageCategoryList.add(new AgeCategory(16, 20, "Teens"));
+        ageCategoryList.add(new AgeCategory(21, 30, "Young"));
+        ageCategoryList.add(new AgeCategory(31, 40, "Young+")) ;
+        ageCategoryList.add(new AgeCategory(41, 50, "Adult"));
+        ageCategoryList.add(new AgeCategory(51, 60, "Mature"));
+        ageCategoryList.add(new AgeCategory(61, 70, "Old"));
+        ageCategoryList.add(new AgeCategory(71, 150, "Senior"));
 
     }
 
     private void generateExercise() {
 
         exerciseList = new ArrayList<>();
-        exerciseList.add(new Exercise("deadLift", 50, 500));
+        exerciseList.add(new Exercise("Dead Lift", 1000, 500));
         exerciseList.add(new Exercise("Deeps",200, 200 ));
-        exerciseList.add(new Exercise("squats",1000, 300 ));
+        exerciseList.add(new Exercise("Squats",1000, 300 ));
         exerciseList.add(new Exercise("Pull-up",100, 100 ));
-        exerciseList.add(new Exercise("Press-Out",100, 500 ));
+        exerciseList.add(new Exercise("Bench Press ",100, 500 ));
 
     }
 
-    private WeightCategory getWeigthCategory(int weigth) {
-         if (weigth <= 80 && weigth >= 70) {
-             return weightCategoryList.get(0);
-         }
-         else if (weigth <= 90 && weigth >= 81) {
-             return weightCategoryList.get(1);
-         }
-         else if (weigth <= 100 && weigth >= 91) {
-             return weightCategoryList.get(2);
-         }
-         else if (weigth <= 110 && weigth >= 101) {
-             return weightCategoryList.get(3);
-         }
-         else  {
-             return weightCategoryList.get(4);
-         }
-    }
+//    private WeightCategory getWeigthCategory(int weigth) {
+//         if (weigth <= 80 && weigth >= 70) {
+//             return weightCategoryList.get(0);
+//         }
+//         else if (weigth <= 90 && weigth >= 81) {
+//             return weightCategoryList.get(1);
+//         }
+//         else if (weigth <= 100 && weigth >= 91) {
+//             return weightCategoryList.get(2);
+//         }
+//         else if (weigth <= 110 && weigth >= 101) {
+//             return weightCategoryList.get(3);
+//         }
+//         else  {
+//             return weightCategoryList.get(4);
+//         }
+//    }
 
-    private AgeCategory getAgeCategory(int age) {
-
-        if (age <= 25 && age >= 18) {
-            return ageCategoryList.get(0);
-        }
-        else if (age <= 30 && age >= 26) {
-            return ageCategoryList.get(1);
-        }
-        else if (age <= 35 && age >= 31) {
-            return ageCategoryList.get(2);
-        }
-        else if (age <= 45 && age >= 36) {
-            return ageCategoryList.get(3);
-        }
-        else if (age <= 50 && age >= 46) {
-            return ageCategoryList.get(4);
-        }
-        else if (age <= 55 && age >= 51) {
-            return ageCategoryList.get(5);
-        }
-        else  {
-            return ageCategoryList.get(6);
-        }
-    }
+//    private AgeCategory getAgeCategory(int age) {
+//
+//        if (age <= 25 && age >= 18) {
+//            return ageCategoryList.get(0);
+//        }
+//        else if (age <= 30 && age >= 26) {
+//            return ageCategoryList.get(1);
+//        }
+//        else if (age <= 35 && age >= 31) {
+//            return ageCategoryList.get(2);
+//        }
+//        else if (age <= 45 && age >= 36) {
+//            return ageCategoryList.get(3);
+//        }
+//        else if (age <= 50 && age >= 46) {
+//            return ageCategoryList.get(4);
+//        }
+//        else if (age <= 55 && age >= 51) {
+//            return ageCategoryList.get(5);
+//        }
+//        else  {
+//            return ageCategoryList.get(6);
+//        }
+//    }
 
     private int getRandomAge() {
 
@@ -133,31 +132,30 @@ public class BigDataBaseTestInitializator {
         else return male;
     }
 
-    private void createUsersList() {
-        this.userList = new ArrayList<>();
+    private void createUsersList(int actualUsersCount) {
 
-        for (int i = 0; i <= 1000; i++) {
+
+        for (int i = actualUsersCount; i < actualUsersCount + 1000; i++) {
             String login = "login" + String.valueOf(i);
             String nickname = "nickname" + String.valueOf(i);
             int age = getRandomAge();
             int weight = getRandomWeight();
-            User fakeUser = new User(login,nickname, age, getRandomGender(), weight,
-                    getAgeCategory(age), getWeigthCategory(weight));
+            User fakeUser = new User(login,nickname, age, getRandomGender(), weight);
             String password = "password" + String.valueOf(i);
             loginDataList.add(new LoginData(fakeUser, password));
             userList.add(fakeUser);
-            generate100TrainigsAndUsersTrainings(fakeUser);
+            generate10to500TrainigsAndUsersTrainings(fakeUser);
         }
     }
 
-    private void generate100TestSchemas() {
-        for (int i = 0; i < 100; i++) {
+    private void generate1000TestSchemas() {
+        for (int i = 0; i < 1000; i++) {
             schemes.add(new SetScheme(generateRandomReps(), generateRandomLoad()));
         }
     }
 
     private SetScheme getRandomScheme() {
-        int rand = random.nextInt(100);
+        int rand = random.nextInt(1000);
         return schemes.get(rand);
     }
 
@@ -169,11 +167,18 @@ public class BigDataBaseTestInitializator {
         return random.nextInt(400) + 10;
     }
 
-    private Date generateRandomDate() {
-        long backTime = random.nextInt(31536000) * 1000;
-        java.util.Date dateObj = new java.util.Date();
-        long dateMilisec = dateObj.getTime();
-        return new Date(dateMilisec-backTime);
+    public java.util.Date generateRandomDate() {
+        long backTime = (long) random.nextInt(93536000) * (long)1000;
+//        java.util.Date dateObj = new java.util.Date();
+//        long dateMilisec = dateObj.getTime();
+
+//        GregorianCalendar calendar = new GregorianCalendar();
+//        calendar.set(2018,2,22);
+        long now = System.currentTimeMillis();
+        long constructor = now - backTime;
+//        long constructor = calendar.getTimeInMillis();
+//        System.out.println(new Date(constructor));
+        return new java.util.Date(constructor);
     }
 
     private Exercise getRandomExercise() {
@@ -181,31 +186,48 @@ public class BigDataBaseTestInitializator {
         return exerciseList.get(rand);
     }
 
-    private void generate100TrainigsAndUsersTrainings(User user) {
-        for (int i = 0; i < 100; i++) {
+    private void generate10to500TrainigsAndUsersTrainings(User user) {
+        int count = random.nextInt(490) + 10;
+        for (int i = 0; i < count; i++) {
             Training training = new Training(getRandomExercise(), getRandomScheme(),generateRandomDate() );
-            listOf100kUsersTrainings.add(new UserTraining(user, training));
-            trainingList100kRecords.add(training);
+            listOfUsersTrainings.add(new UserTraining(user, training));
+            trainingListRecords.add(training);
         }
     }
 
-    private void prepareData() {
+    private void prepareSmallData() {
 
-        generate100TestSchemas();
+        generate1000TestSchemas();
 
         generateAgeCategory();
         generateWeightCategory();
         generateExercise();
+    }
 
-        createUsersList();
+    private void prepareBigData(int actualUsersCount) {
 
+        createUsersList(actualUsersCount);
+    }
+
+    private void cleanBigData() {
+
+        this.userList.clear();
+        this.userList = new ArrayList<>();
+        this.loginDataList.clear();
+        this.loginDataList = new ArrayList<>();
+        this.listOfUsersTrainings.clear();
+        this.listOfUsersTrainings = new ArrayList<>();
+        this.trainingListRecords.clear();
+        this.trainingListRecords = new ArrayList<>();
 
     }
 
 
-    public void fillDataBase(EntityManager manager) {
+    public void fillDataBase(EntityManager manager, int countOfTousandFakeUsers) {
 
-        prepareData();
+
+
+        prepareSmallData();
 
         EntityTransaction transaction =  manager.getTransaction();
 
@@ -230,27 +252,42 @@ public class BigDataBaseTestInitializator {
             manager.persist(e);
         }
 
-
-        for (User u : userList) {
-            manager.persist(u);
-        }
-
-        for (LoginData lg : loginDataList) {
-            manager.persist(lg);
-        }
-
-        for (Training t : trainingList100kRecords) {
-            manager.persist(t);
-        }
-
-        for (UserTraining ut : listOf100kUsersTrainings) {
-            manager.persist(ut);
-        }
-
-
         transaction.commit();
 
 
+
+        int actualUsersCount = 0;
+
+        EntityTransaction transactionBigData =  manager.getTransaction();
+        transactionBigData.begin();
+
+
+
+        for (int i = 0; i < countOfTousandFakeUsers; i++) {
+
+            prepareBigData(actualUsersCount);
+
+            for (User u : userList) {
+                manager.persist(u);
+            }
+
+            for (LoginData lg : loginDataList) {
+                manager.persist(lg);
+            }
+
+            for (Training t : trainingListRecords) {
+                manager.persist(t);
+            }
+
+            for (UserTraining ut : listOfUsersTrainings) {
+                manager.persist(ut);
+            }
+
+            cleanBigData();
+            actualUsersCount += 1000;
+        }
+
+        transactionBigData.commit();
 
     }
 }
