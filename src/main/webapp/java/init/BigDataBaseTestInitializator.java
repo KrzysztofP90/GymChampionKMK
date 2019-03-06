@@ -4,7 +4,6 @@ import model.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import java.sql.Date;
 import java.util.*;
 
 public class BigDataBaseTestInitializator {
@@ -71,12 +70,6 @@ public class BigDataBaseTestInitializator {
     }
 
 
-
-    private int getRandomAge() {
-
-        return random.nextInt(100) + 18;
-    }
-
     private int getRandomWeight() {
 
         return random.nextInt(100) + 60;
@@ -97,9 +90,9 @@ public class BigDataBaseTestInitializator {
         for (int i = actualUsersCount; i < actualUsersCount + 1000; i++) {
             String login = "login" + String.valueOf(i);
             String nickname = "nickname" + String.valueOf(i);
-            int age = getRandomAge();
+            Date randomBirthdayDate = generateRandomBirthdayDay();
             int weight = getRandomWeight();
-            User fakeUser = new User(login,nickname, age, getRandomGender(), weight);
+            User fakeUser = new User(login,nickname, randomBirthdayDate, getRandomGender(), weight);
             String password = "password" + String.valueOf(i);
             loginDataList.add(new LoginData(fakeUser, password));
             userList.add(fakeUser);
@@ -136,6 +129,18 @@ public class BigDataBaseTestInitializator {
     private Exercise getRandomExercise() {
         int rand = random.nextInt(5);
         return exerciseList.get(rand);
+    }
+
+
+    private Date generateRandomBirthdayDay() {
+
+        int randomYearFrom1930To2003 = random.nextInt(73) + 1930;
+        int randomMonth = random.nextInt(12);
+        int randomDay = random.nextInt(30) + 1;
+
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.set(randomYearFrom1930To2003,randomMonth,randomDay);
+        return new Date(calendar.getTimeInMillis());
     }
 
     private void generate10to500TrainigsAndUsersTrainings(User user) {

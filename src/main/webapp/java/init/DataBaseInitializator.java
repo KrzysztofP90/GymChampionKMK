@@ -9,6 +9,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import java.sql.Date;
+import java.util.GregorianCalendar;
 
 public class DataBaseInitializator {
 
@@ -21,7 +22,11 @@ public class DataBaseInitializator {
 
         WeightCategory weightCategory1 = new WeightCategory(60, 70, "light");
 
-        User firstUser = new User("Pawel", "Pawcio" ,23, male, 68);
+        GregorianCalendar calendar = new GregorianCalendar(1990,2,13);
+
+        java.util.Date birthdayDate = calendar.getGregorianChange();
+
+        User firstUser = new User("Pawel", "Pawcio" ,birthdayDate, male, 68);
 
         LoginData firstUserLogin = new LoginData(firstUser, "abc");
 
@@ -75,14 +80,14 @@ public class DataBaseInitializator {
     public static void main(String[] args) {
 
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("GymChampion");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TestGymChampion");
         EntityManager menager = factory.createEntityManager();
 
 //        DataBaseInitializator initializator = new DataBaseInitializator();
 //        initializator.testInitSimpleDB(menager);
 
         BigDataBaseTestInitializator bigData = new BigDataBaseTestInitializator();
-        bigData.fillDataBase(menager, 3);
+        bigData.fillDataBase(menager, 1);
 
         factory.close();
 
