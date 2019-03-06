@@ -75,14 +75,14 @@ public class DataBaseInitializator {
     public static void main(String[] args) {
 
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TestGymChampion");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("GymChampion");
         EntityManager menager = factory.createEntityManager();
 
 //        DataBaseInitializator initializator = new DataBaseInitializator();
 //        initializator.testInitSimpleDB(menager);
 
         BigDataBaseTestInitializator bigData = new BigDataBaseTestInitializator();
-        bigData.fillDataBase(menager, 3);
+        bigData.fillDataBase(menager, 1);
 
         factory.close();
 
