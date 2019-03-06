@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -25,6 +26,9 @@ public class User {
     private String nickname;
 
     @Column(nullable = false)
+    private Date bithdayDate;
+
+
     private int age;
 
     @ManyToOne
@@ -38,11 +42,10 @@ public class User {
     public User() {
     }
 
-
-    public User(String login, String nickname, int age, Gender sex, int weight) {
+    public User(String login, String nickname, Date bithdayDate, Gender sex, int weight) {
         this.login = login;
         this.nickname = nickname;
-        this.age = age;
+        this.bithdayDate = bithdayDate;
         this.sex = sex;
         this.weight = weight;
     }
@@ -53,6 +56,14 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Date getBithdayDate() {
+        return bithdayDate;
+    }
+
+    public void setBithdayDate(Date bithdayDate) {
+        this.bithdayDate = bithdayDate;
     }
 
     public String getLogin() {
