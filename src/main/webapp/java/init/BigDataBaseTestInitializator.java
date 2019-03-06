@@ -70,48 +70,7 @@ public class BigDataBaseTestInitializator {
 
     }
 
-//    private WeightCategory getWeigthCategory(int weigth) {
-//         if (weigth <= 80 && weigth >= 70) {
-//             return weightCategoryList.get(0);
-//         }
-//         else if (weigth <= 90 && weigth >= 81) {
-//             return weightCategoryList.get(1);
-//         }
-//         else if (weigth <= 100 && weigth >= 91) {
-//             return weightCategoryList.get(2);
-//         }
-//         else if (weigth <= 110 && weigth >= 101) {
-//             return weightCategoryList.get(3);
-//         }
-//         else  {
-//             return weightCategoryList.get(4);
-//         }
-//    }
 
-//    private AgeCategory getAgeCategory(int age) {
-//
-//        if (age <= 25 && age >= 18) {
-//            return ageCategoryList.get(0);
-//        }
-//        else if (age <= 30 && age >= 26) {
-//            return ageCategoryList.get(1);
-//        }
-//        else if (age <= 35 && age >= 31) {
-//            return ageCategoryList.get(2);
-//        }
-//        else if (age <= 45 && age >= 36) {
-//            return ageCategoryList.get(3);
-//        }
-//        else if (age <= 50 && age >= 46) {
-//            return ageCategoryList.get(4);
-//        }
-//        else if (age <= 55 && age >= 51) {
-//            return ageCategoryList.get(5);
-//        }
-//        else  {
-//            return ageCategoryList.get(6);
-//        }
-//    }
 
     private int getRandomAge() {
 
@@ -169,15 +128,8 @@ public class BigDataBaseTestInitializator {
 
     public java.util.Date generateRandomDate() {
         long backTime = (long) random.nextInt(93536000) * (long)1000;
-//        java.util.Date dateObj = new java.util.Date();
-//        long dateMilisec = dateObj.getTime();
-
-//        GregorianCalendar calendar = new GregorianCalendar();
-//        calendar.set(2018,2,22);
         long now = System.currentTimeMillis();
         long constructor = now - backTime;
-//        long constructor = calendar.getTimeInMillis();
-//        System.out.println(new Date(constructor));
         return new java.util.Date(constructor);
     }
 
@@ -224,7 +176,6 @@ public class BigDataBaseTestInitializator {
 
 
     public void fillDataBase(EntityManager manager, int countOfTousandFakeUsers) {
-
 
 
         prepareSmallData();
