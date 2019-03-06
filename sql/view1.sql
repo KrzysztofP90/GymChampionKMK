@@ -12,3 +12,5 @@ CREATE VIEW young_male_viev AS
 
 SELECT * FROM young_male_viev;
 
+
+
