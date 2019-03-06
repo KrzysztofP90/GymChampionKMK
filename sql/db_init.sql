@@ -3,18 +3,18 @@
 -- load this file: "\i db_init.sql"
 
 
--- CREATE DATABASE "GymChampion" WITH OWNER = Krzysztof ENCODING = 'UTF8';
+CREATE DATABASE "GymChampion" WITH OWNER = krzysiek ENCODING = 'UTF8';
 
--- \c GymChampion
+\c GymChampion
 
 create table gender (
-  gender_id INTEGER,
+  gender_id SERIAL,
   sex VARCHAR(15) not null ,
   PRIMARY KEY(gender_id)
 );
 
 create table weight_category (
-  weight_category_id integer,
+  weight_category_id serial,
   min_weight SMALLINT not null ,
   max_weight SMALLINT not null ,
   category_name VARCHAR(20) not null ,
@@ -34,11 +34,14 @@ CREATE TABLE gym_user (
   user_login VARCHAR(15),
   nickname VARCHAR(20),
   age SMALLINT NOT NULL,
-  gender INT REFERENCES gender(gender_id),
+  gender INT,
   weight SMALLINT NOT NULL,
-  age_category INT REFERENCES age_category(age_category_id),
-  weight_category INT REFERENCES weight_category(weight_category_id),
-  PRIMARY KEY(user_login)
+  age_category INT,
+  weight_category INT,
+  PRIMARY KEY(user_login),
+  FOREIGN KEY(gender) REFERENCES gender(gender_id),
+  FOREIGN KEY(age_category) REFERENCES age_category(age_category_id),
+  FOREIGN KEY(weight_category) REFERENCES weight_category(weight_category_id)
 );
 
 CREATE TABLE login_data(
@@ -79,7 +82,7 @@ create table personal_best (
 
 -- need exercise and set_scheme
 CREATE TABLE training (
-  training_id INT,
+  training_id SERIAL,
   exercise_id INT REFERENCES exercise(exercise_id),
   set_id INT REFERENCES set_scheme(set_id),
   training_date TIMESTAMP,
