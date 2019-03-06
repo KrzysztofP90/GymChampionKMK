@@ -75,7 +75,7 @@ public class DataBaseInitializator {
     public static void main(String[] args) {
 
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("GymChampion");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TestGymChampion");
         EntityManager menager = factory.createEntityManager();
 
 //        DataBaseInitializator initializator = new DataBaseInitializator();
