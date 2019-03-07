@@ -1,18 +1,17 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Gender {
 
     @Id
+    @GeneratedValue
+    private int id;
+
+    @Column
     private String sexName;
-
-
 
     public Gender() {
     }
@@ -28,4 +27,9 @@ public class Gender {
     public void setSexName(String sexName) {
         this.sexName = sexName;
     }
+
+    public int getId() {
+        return id;
+    }
+
 }
