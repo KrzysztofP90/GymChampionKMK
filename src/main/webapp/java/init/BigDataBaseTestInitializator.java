@@ -45,6 +45,28 @@ public class BigDataBaseTestInitializator {
 
     }
 
+
+    private WeightCategory getWeigthCategory(int weigth) {
+        if (weigth <= 60 && weigth >= 50) {
+            return weightCategoryList.get(0);
+        }
+        else if (weigth <= 70 && weigth >= 61) {
+            return weightCategoryList.get(1);
+        }
+        else if (weigth <= 85 && weigth >= 71) {
+            return weightCategoryList.get(2);
+        }
+        else if (weigth <= 100 && weigth >= 86) {
+            return weightCategoryList.get(3);
+        }
+        else  {
+            return weightCategoryList.get(4);
+        }
+    }
+
+
+
+
     private void generateAgeCategory() {
 
         ageCategoryList = new ArrayList<>();
@@ -58,14 +80,39 @@ public class BigDataBaseTestInitializator {
 
     }
 
+    private AgeCategory getAgeCategory(int age) {
+
+        if (age <= 20 && age >= 16) {
+            return ageCategoryList.get(0);
+        }
+        else if (age <= 30 && age >= 21) {
+            return ageCategoryList.get(1);
+        }
+        else if (age <= 40 && age >= 31) {
+            return ageCategoryList.get(2);
+        }
+        else if (age <= 50 && age >= 41) {
+            return ageCategoryList.get(3);
+        }
+        else if (age <= 60 && age >= 51) {
+            return ageCategoryList.get(4);
+        }
+        else if (age <= 70 && age >= 61) {
+            return ageCategoryList.get(5);
+        }
+        else  {
+            return ageCategoryList.get(6);
+        }
+    }
+
     private void generateExercise() {
 
         exerciseList = new ArrayList<>();
-        exerciseList.add(new Exercise("Dead Lift", 1000, 500));
-        exerciseList.add(new Exercise("Deeps",200, 200 ));
-        exerciseList.add(new Exercise("Squats",1000, 300 ));
-        exerciseList.add(new Exercise("Pull-up",100, 100 ));
-        exerciseList.add(new Exercise("Bench Press ",100, 500 ));
+        exerciseList.add(new Exercise("Dead Lift", 40, 500));
+        exerciseList.add(new Exercise("Deeps",50, 200 ));
+        exerciseList.add(new Exercise("Squats",400, 300 ));
+        exerciseList.add(new Exercise("Pull-up",60, 100 ));
+        exerciseList.add(new Exercise("Bench Press ",40, 500 ));
 
     }
 
@@ -92,7 +139,10 @@ public class BigDataBaseTestInitializator {
             String nickname = "nickname" + String.valueOf(i);
             Date randomBirthdayDate = generateRandomBirthdayDay();
             int weight = getRandomWeight();
-            User fakeUser = new User(login,nickname, randomBirthdayDate, getRandomGender(), weight);
+            Date birthday = generateRandomBirthdayDay();
+            int age = getAgeFromBirthdayDate(birthday);
+            User fakeUser = new User(login, getAgeCategory(age),
+                    getWeigthCategory(weight),nickname, birthday, age, getRandomGender(), weight);
             String password = "password" + String.valueOf(i);
             loginDataList.add(new LoginData(fakeUser, password));
             userList.add(fakeUser);
@@ -134,13 +184,21 @@ public class BigDataBaseTestInitializator {
 
     private Date generateRandomBirthdayDay() {
 
-        int randomYearFrom1930To2003 = random.nextInt(73) + 1930;
+        int randomYearFrom1940To2003 = random.nextInt(73) + 1940;
         int randomMonth = random.nextInt(12);
         int randomDay = random.nextInt(30) + 1;
 
         GregorianCalendar calendar = new GregorianCalendar();
-        calendar.set(randomYearFrom1930To2003,randomMonth,randomDay);
+        calendar.set(randomYearFrom1940To2003,randomMonth,randomDay);
         return new Date(calendar.getTimeInMillis());
+    }
+
+
+    private int getAgeFromBirthdayDate(Date birthdayDate) {
+        String birthday = birthdayDate.toString();
+        String[] arr = birthday.split(" ");
+        int year = Integer.valueOf(arr[5]);
+        return  2019 - year;
     }
 
     private void generate10to500TrainigsAndUsersTrainings(User user) {

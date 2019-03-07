@@ -44,6 +44,17 @@ public class User {
         this.weight = weight;
     }
 
+    public User(String login, AgeCategory ageCategory, WeightCategory weightCategory, String nickname, Date birthdayDate, int age, Gender sex, int weight) {
+        this.login = login;
+        this.ageCategory = ageCategory;
+        this.weightCategory = weightCategory;
+        this.nickname = nickname;
+        this.birthdayDate = birthdayDate;
+        this.age = age;
+        this.sex = sex;
+        this.weight = weight;
+    }
+
     public Date getBirthdayDate() {
         return birthdayDate;
     }
