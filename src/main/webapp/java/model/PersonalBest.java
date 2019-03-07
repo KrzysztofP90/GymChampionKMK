@@ -32,4 +32,15 @@ public class PersonalBest {
     @Column(nullable = false)
     private Date date;
 
+    public PersonalBest() {
+    }
+
+    public PersonalBest(Exercise exercise, double maxWeight, User user, AgeCategory ageCategory, WeightCategory weightCategory, Date date) {
+        this.exercise = exercise;
+        this.maxWeight = maxWeight;
+        this.user = user;
+        this.ageCategory = ageCategory;
+        this.weightCategory = weightCategory;
+        this.date = date;
+    }
 }

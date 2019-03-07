@@ -20,6 +20,7 @@ public class BigDataBaseTestInitializator {
 
     private List<Training> trainingListRecords;
     private List<UserTraining> listOfUsersTrainings;
+    private List<PersonalBest> personalBestList;
 
 
     public BigDataBaseTestInitializator() {
@@ -31,6 +32,7 @@ public class BigDataBaseTestInitializator {
         this.trainingListRecords = new ArrayList<>();
         this.listOfUsersTrainings = new ArrayList<>();
         this.userList = new ArrayList<>();
+        this.personalBestList = new ArrayList<>();
     }
 
     private void generateWeightCategory() {
@@ -108,11 +110,11 @@ public class BigDataBaseTestInitializator {
     private void generateExercise() {
 
         exerciseList = new ArrayList<>();
-        exerciseList.add(new Exercise("Dead Lift", 40, 500));
-        exerciseList.add(new Exercise("Deeps",50, 200 ));
-        exerciseList.add(new Exercise("Squats",400, 300 ));
-        exerciseList.add(new Exercise("Pull-up",60, 100 ));
-        exerciseList.add(new Exercise("Bench Press ",40, 500 ));
+        exerciseList.add(new Exercise("Dead Lift", 40, 250));
+        exerciseList.add(new Exercise("Deeps",50, 80 ));
+        exerciseList.add(new Exercise("Squats",400, 150 ));
+        exerciseList.add(new Exercise("Pull-up",50, 100 ));
+        exerciseList.add(new Exercise("Bench Press ",20, 200 ));
 
     }
 
@@ -139,14 +141,18 @@ public class BigDataBaseTestInitializator {
             String nickname = "nickname" + String.valueOf(i);
             Date randomBirthdayDate = generateRandomBirthdayDay();
             int weight = getRandomWeight();
-            Date birthday = generateRandomBirthdayDay();
-            int age = getAgeFromBirthdayDate(birthday);
+            int age = getAgeFromBirthdayDate(randomBirthdayDate);
             User fakeUser = new User(login, getAgeCategory(age),
-                    getWeigthCategory(weight),nickname, birthday, age, getRandomGender(), weight);
+                    getWeigthCategory(weight),nickname, randomBirthdayDate, age, getRandomGender(), weight);
             String password = "password" + String.valueOf(i);
             loginDataList.add(new LoginData(fakeUser, password));
             userList.add(fakeUser);
             generate10to500TrainigsAndUsersTrainings(fakeUser);
+
+            for (Exercise exercise : exerciseList) {
+                personalBestList.add(getPersonalBestForUserInExercise(fakeUser, exercise.getName()));
+            }
+
         }
     }
 
@@ -184,7 +190,7 @@ public class BigDataBaseTestInitializator {
 
     private Date generateRandomBirthdayDay() {
 
-        int randomYearFrom1940To2003 = random.nextInt(73) + 1940;
+        int randomYearFrom1940To2003 = random.nextInt(63) + 1940;
         int randomMonth = random.nextInt(12);
         int randomDay = random.nextInt(30) + 1;
 
@@ -235,6 +241,31 @@ public class BigDataBaseTestInitializator {
         this.trainingListRecords.clear();
         this.trainingListRecords = new ArrayList<>();
 
+    }
+
+    private Training getTrainigWithMaxWeightForUser(User user, String exercise) {
+        String userLogin = user.getLogin();
+        Training best = null;
+        double maxLoad = 0;
+        for (User u : userList) {
+            if (u.getLogin().equals(userLogin)) {
+                for (Training training : trainingListRecords) {
+                   if (training.getExercise().getName().equals(exercise)) {
+                       if (training.getSet().getLoad() > maxLoad) {
+                           maxLoad = training.getSet().getLoad();
+                           best = training;
+                       }
+                   }
+                }
+            }
+        }
+        return best;
+    }
+
+    private PersonalBest getPersonalBestForUserInExercise(User user, String exercise) {
+        Training best = getTrainigWithMaxWeightForUser(user, exercise);
+        return new PersonalBest(best.getExercise(),best.getSet().getLoad(),user,user.getAgeCategory(),
+                user.getWeightCategory(),best.getTrainingDate());
     }
 
 
@@ -304,6 +335,13 @@ public class BigDataBaseTestInitializator {
                 manager.persist(ut);
             }
             userTrainigTransaction.commit();
+
+            EntityTransaction personalBestTransaction = manager.getTransaction();
+            personalBestTransaction.begin();
+            for (PersonalBest best : personalBestList) {
+                manager.persist(best);
+            }
+            personalBestTransaction.commit();
 
 
             cleanBigData();
