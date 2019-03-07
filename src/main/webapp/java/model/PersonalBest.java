@@ -16,11 +16,7 @@ public class PersonalBest {
     private Exercise exercise;
 
     @Column(nullable = false)
-    private int rMax1;
-
-    @Column(nullable = false)
-    private int rMax10;
-
+    private double maxWeight;
 
     @ManyToOne
     private User user;

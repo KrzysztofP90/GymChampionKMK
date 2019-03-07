@@ -10,15 +10,13 @@ import java.util.List;
 public class User {
 
 
-    private int id;
-
     @Id
     private String login;
 
-    @OneToMany @ManyToOne(targetEntity = AgeCategory.class)
+    @ManyToOne(targetEntity = AgeCategory.class)
     private AgeCategory ageCategory;
 
-    @OneToMany @ManyToOne(targetEntity = WeightCategory.class)
+    @ManyToOne(targetEntity = WeightCategory.class)
     private WeightCategory weightCategory;
 
 
@@ -36,8 +34,6 @@ public class User {
     @Column(nullable = false)
     private int weight;
 
-
-
     public User() {
     }
 
@@ -47,14 +43,6 @@ public class User {
         this.bithdayDate = bithdayDate;
         this.sex = sex;
         this.weight = weight;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Date getBithdayDate() {

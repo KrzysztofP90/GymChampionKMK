@@ -18,14 +18,14 @@ public class SetScheme {
     private int reps;
 
     @Column(nullable = false)
-    private double load;
+    private double weight;
 
     public SetScheme() {
     }
 
     public SetScheme(int reps, double load) {
         this.reps = reps;
-        this.load = load;
+        this.weight = load;
     }
 
     public int getId() {
@@ -53,10 +53,10 @@ public class SetScheme {
     }
 
     public double getLoad() {
-        return load;
+        return weight;
     }
 
     public void setLoad(double load) {
-        this.load = load;
+        this.weight = load;
     }
 }

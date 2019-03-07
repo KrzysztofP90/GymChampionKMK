@@ -16,11 +16,8 @@ public class Exercise {
     @Column(nullable = false)
     private int maxReps;
 
-
-
-
     @Column(nullable = false)
-    private double maxLoad;
+    private double maxWeight;
 
     public Exercise() {
     }
@@ -28,7 +25,7 @@ public class Exercise {
     public Exercise(String name, int maxReps, double maxLoad) {
         this.name = name;
         this.maxReps = maxReps;
-        this.maxLoad = maxLoad;
+        this.maxWeight = maxLoad;
     }
 
     public String getName() {
@@ -56,10 +53,10 @@ public class Exercise {
     }
 
     public double getMaxLoad() {
-        return maxLoad;
+        return maxWeight;
     }
 
     public void setMaxLoad(double maxLoad) {
-        this.maxLoad = maxLoad;
+        this.maxWeight = maxLoad;
     }
 }
