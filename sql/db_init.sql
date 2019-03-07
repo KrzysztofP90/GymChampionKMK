@@ -2,10 +2,10 @@
 -- open postgres in terminal: "psql"
 -- load this file: "\i db_init.sql"
 
-
-CREATE DATABASE "GymChampion" WITH OWNER = krzysiek ENCODING = 'UTF8';
-
-\c GymChampion
+-- 
+-- CREATE DATABASE "GymChampion" WITH OWNER = krzysiek ENCODING = 'UTF8';
+-- 
+-- \c GymChampion
 
 create table gender (
   gender_id SERIAL,
