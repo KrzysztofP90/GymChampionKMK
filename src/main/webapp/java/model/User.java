@@ -9,11 +9,10 @@ import java.util.List;
 
 public class User {
 
-    @Id
-    @GeneratedValue
+
     private int id;
 
-
+    @Id
     private String login;
 
     @OneToMany @ManyToOne(targetEntity = AgeCategory.class)

@@ -2,19 +2,19 @@
 -- open postgres in terminal: "psql"
 -- load this file: "\i db_init.sql"
 
-
--- CREATE DATABASE "GymChampion" WITH OWNER = Krzysztof ENCODING = 'UTF8';
-
+--
+-- CREATE DATABASE "GymChampion" WITH OWNER = krzysiek ENCODING = 'UTF8';
+--
 -- \c GymChampion
 
 create table gender (
-  gender_id INTEGER,
+  gender_id SERIAL,
   sex VARCHAR(15) not null ,
   PRIMARY KEY(gender_id)
 );
 
 create table weight_category (
-  weight_category_id integer,
+  weight_category_id serial,
   min_weight SMALLINT not null ,
   max_weight SMALLINT not null ,
   category_name VARCHAR(20) not null ,
@@ -33,13 +33,15 @@ CREATE TABLE age_category(
 CREATE TABLE gym_user (
   user_login VARCHAR(15),
   nickname VARCHAR(20),
-  birthday_date timestamp,
   age SMALLINT NOT NULL,
-  gender INT REFERENCES gender(gender_id),
+  gender INT,
   weight SMALLINT NOT NULL,
-  age_category INT REFERENCES age_category(age_category_id),
-  weight_category INT REFERENCES weight_category(weight_category_id),
-  PRIMARY KEY(user_login)
+  age_category INT,
+  weight_category INT,
+  PRIMARY KEY(user_login),
+  FOREIGN KEY(gender) REFERENCES gender(gender_id),
+  FOREIGN KEY(age_category) REFERENCES age_category(age_category_id),
+  FOREIGN KEY(weight_category) REFERENCES weight_category(weight_category_id)
 );
 
 CREATE TABLE login_data(
@@ -53,21 +55,20 @@ CREATE TABLE exercise (
   exercise_id serial PRIMARY KEY,
   name varchar(20) unique,
   max_repetitions integer,
-  max_load integer
+  max_weight double precision
 );
 
 CREATE TABLE set_scheme(
    set_id serial PRIMARY KEY,
    repetitions integer,
-   load double precision
+   weight double precision
 );
 
 
 create table personal_best (
   exercise_id INTEGER,
-  rmax1 INTEGER,
-  rmax10 INTEGER,
   user_login varchar(15),
+  best_weight DOUBLE PRECISION,
   age_category_id INTEGER,
   weight_category_id INTEGER,
   date timestamp,
@@ -80,7 +81,7 @@ create table personal_best (
 
 -- need exercise and set_scheme
 CREATE TABLE training (
-  training_id INT,
+  training_id SERIAL,
   exercise_id INT REFERENCES exercise(exercise_id),
   set_id INT REFERENCES set_scheme(set_id),
   training_date TIMESTAMP,
