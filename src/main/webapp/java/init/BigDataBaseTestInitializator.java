@@ -214,36 +214,42 @@ public class BigDataBaseTestInitializator {
 
         int actualUsersCount = 0;
 
-        EntityTransaction transactionBigData =  manager.getTransaction();
-        transactionBigData.begin();
-
-
 
         for (int i = 0; i < countOfTousandFakeUsers; i++) {
 
             prepareBigData(actualUsersCount);
 
+            EntityTransaction userTransaction = manager.getTransaction();
+            userTransaction.begin();
             for (User u : userList) {
                 manager.persist(u);
             }
+            userTransaction.commit();
 
+            EntityTransaction loginTransaction = manager.getTransaction();
+            loginTransaction.begin();
             for (LoginData lg : loginDataList) {
                 manager.persist(lg);
             }
+            loginTransaction.commit();
 
+            EntityTransaction trainigTransaction = manager.getTransaction();
+            trainigTransaction.begin();
             for (Training t : trainingListRecords) {
                 manager.persist(t);
             }
+            trainigTransaction.commit();
 
+            EntityTransaction userTrainigTransaction = manager.getTransaction();
+            userTrainigTransaction.begin();
             for (UserTraining ut : listOfUsersTrainings) {
                 manager.persist(ut);
             }
+            userTrainigTransaction.commit();
+
 
             cleanBigData();
             actualUsersCount += 1000;
         }
-
-        transactionBigData.commit();
-
     }
 }

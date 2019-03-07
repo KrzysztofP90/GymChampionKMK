@@ -86,8 +86,8 @@ public class DataBaseInitializator {
 //        DataBaseInitializator initializator = new DataBaseInitializator();
 //        initializator.testInitSimpleDB(menager);
 
-        BigDataBaseTestInitializator bigData = new BigDataBaseTestInitializator();
-        bigData.fillDataBase(menager, 1);
+//        BigDataBaseTestInitializator bigData = new BigDataBaseTestInitializator();
+//        bigData.fillDataBase(menager, 1);
 
         factory.close();
 
