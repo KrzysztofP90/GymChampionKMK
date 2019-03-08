@@ -2,7 +2,6 @@ package model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "GymUser")
@@ -23,7 +22,7 @@ public class User {
     private String nickname;
 
     @Column(nullable = false)
-    private Date bithdayDate;
+    private Date birthdayDate;
 
 
     private int age;
@@ -40,17 +39,28 @@ public class User {
     public User(String login, String nickname, Date bithdayDate, Gender sex, int weight) {
         this.login = login;
         this.nickname = nickname;
-        this.bithdayDate = bithdayDate;
+        this.birthdayDate = bithdayDate;
         this.sex = sex;
         this.weight = weight;
     }
 
-    public Date getBithdayDate() {
-        return bithdayDate;
+    public User(String login, AgeCategory ageCategory, WeightCategory weightCategory, String nickname, Date birthdayDate, int age, Gender sex, int weight) {
+        this.login = login;
+        this.ageCategory = ageCategory;
+        this.weightCategory = weightCategory;
+        this.nickname = nickname;
+        this.birthdayDate = birthdayDate;
+        this.age = age;
+        this.sex = sex;
+        this.weight = weight;
     }
 
-    public void setBithdayDate(Date bithdayDate) {
-        this.bithdayDate = bithdayDate;
+    public Date getBirthdayDate() {
+        return birthdayDate;
+    }
+
+    public void setBirthdayDate(Date birthdayDate) {
+        this.birthdayDate = birthdayDate;
     }
 
     public String getLogin() {
